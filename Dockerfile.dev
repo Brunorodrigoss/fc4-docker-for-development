@@ -4,3 +4,13 @@ RUN apt update && \
     apt upgrade -y && \
     apt install -y curl && \
     npm install -g nodemon
+
+# debian
+# RUN useradd -m -u 1000 xpto
+# RUN usermod -u 1000 xpto
+
+# alpine
+# RUN adduser -D -u 1000 xpto
+# RUN sed -i 's/1000/1001/g' /etc/passwd
+
+USER node

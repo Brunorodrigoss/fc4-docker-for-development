@@ -16,3 +16,15 @@ RUN apt update && \
 USER node
 
 WORKDIR /home/node/app
+
+COPY package.json .
+
+RUN npm install
+
+EXPOSE 3000
+
+# CMD [ "node", "-v" ]
+
+# ENTRYPOINT [ "node", "-v" ]
+
+CMD [ "tail", "-f", "/dev/null" ]

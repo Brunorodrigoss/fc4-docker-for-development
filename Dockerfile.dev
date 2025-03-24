@@ -13,18 +13,17 @@ RUN apt update && \
 # RUN adduser -D -u 1000 xpto
 # RUN sed -i 's/1000/1001/g' /etc/passwd
 
+COPY start.sh /
+RUN chmod +x /start.sh
+
 USER node
 
 WORKDIR /home/node/app
 
-COPY package.json .
+# COPY package.json .
 
-RUN npm install
+# RUN npm install
 
 EXPOSE 3000
 
-# CMD [ "node", "-v" ]
-
-# ENTRYPOINT [ "node", "-v" ]
-
-CMD [ "tail", "-f", "/dev/null" ]
+CMD [ "/start.sh" ]

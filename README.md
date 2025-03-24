@@ -10,3 +10,5 @@
 ||
 | docker run -v $(pwd):/home/node/app -it brunorodrigoss/mynodeimage:latest bash |
 | npm init |
+||
+| chmod +x start.sh |

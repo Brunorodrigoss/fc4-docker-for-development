@@ -1,7 +1,7 @@
 {
   "name": "app",
   "version": "1.0.0",
-  "description": "|Commands| |-| | docker build -t brunorodrigoss/mynodeimage:latest -f Dockerfile.dev . --no-cache | || | chown brunorodrigo:brunorodrigo test.txt | | ls -la . | | whoami | | cat /etc/passwd |",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

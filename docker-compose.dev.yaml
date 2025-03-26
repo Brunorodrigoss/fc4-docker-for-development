@@ -4,5 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    command: tail -f /dev/null
     volumes:
       - .:/home/node/app

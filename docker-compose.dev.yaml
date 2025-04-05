@@ -2,8 +2,18 @@ services:
 
   web:
     build:
+      args:
+        - NODEMON_VERSION=${NODEMON_VERSION:-3.1.7}
       context: .
       dockerfile: Dockerfile.dev
     command: tail -f /dev/null
     volumes:
       - .:/home/node/app
+    ports:
+      - 3000:3000
+
+  db:
+    image: mysql:8.0.30-debian
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mysqldatabase

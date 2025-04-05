@@ -16,3 +16,11 @@
 | docker compose -f docker-compose.dev.yaml up |
 | docker compose -f docker-compose.dev.yaml exec web bash |
 | docker compose -f docker-compose.dev.yaml up --build |
+| npm install express mysql2|
+| node src/index.js |
+| npm start |
+||
+| docker compose -f docker-compose.dev.yaml exec db bash |
+| printenv |
+| nodemon src/index.js |
+| NODEMON_VERSION=3.1.5 docker compose -f docker-compose.dev.yaml up --build |

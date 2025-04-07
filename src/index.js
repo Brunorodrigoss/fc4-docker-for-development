@@ -20,8 +20,8 @@ app.get('/test-db', async function (req, res) {
     const connection = mysql.createConnection({
         host        : process.env.DB_HOST,
         user        : process.env.DB_USER,
-        password    : process.env.DB_PASSWORD,
-        database    : process.env.DB_DATABASE
+        password    : process.env.MYSQL_ROOT_PASSWORD,
+        database    : process.env.MYSQL_DATABASE
     });
 
     connection.connect(error => {

@@ -24,3 +24,6 @@
 | printenv |
 | nodemon src/index.js |
 | NODEMON_VERSION=3.1.5 docker compose -f docker-compose.dev.yaml up --build |
+||
+| docker compose -f docker-compose.dev.yaml ps |
+| docker network ls |

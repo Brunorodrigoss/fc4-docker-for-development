@@ -1,5 +1,7 @@
+include:
+  - ./external-api/docker-compose.external-api.yaml
+  
 services:
-
   web:
     build:
       args:

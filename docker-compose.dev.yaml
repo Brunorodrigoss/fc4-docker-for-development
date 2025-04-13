@@ -54,22 +54,27 @@ services:
       - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
 
   db:
-    image: mysql:8.0.30-debian
-    # restart: on-failure:5
-    restart: always
-    env_file:
-      - .env
-    # environment:
-    #   MYSQL_ROOT_PASSWORD: root
-    #   MYSQL_DATABASE: mysqldatabase
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 30s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
-    # networks:
-    #   - my-external-network
+    extends:
+      file: docker-compose.common.yaml
+      service: db
+
+  # db:
+  #   image: mysql:8.0.30-debian
+  #   # restart: on-failure:5
+  #   restart: always
+  #   env_file:
+  #     - .env
+  #   # environment:
+  #   #   MYSQL_ROOT_PASSWORD: root
+  #   #   MYSQL_DATABASE: mysqldatabase
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+  #     interval: 30s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 10s
+  #   # networks:
+  #   #   - my-external-network
 
 # networks:
 #   my-external-network:

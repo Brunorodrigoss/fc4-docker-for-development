@@ -27,3 +27,5 @@
 ||
 | docker compose -f docker-compose.dev.yaml ps |
 | docker network ls |
+||
+| docker compose -f docker-compose.test.yaml up |

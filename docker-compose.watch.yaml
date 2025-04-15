@@ -1,0 +1,59 @@
+include:
+  - ./external-api/docker-compose.external-api.yaml
+
+services:
+  web1:
+    extends:
+      file: docker-compose.common.yaml
+      service: web
+    ports:
+      - 3000:3000
+    depends_on:
+      db:
+        condition: service_healthy
+  
+  web2:
+    extends:
+      file: docker-compose.common.yaml
+      service: web
+    profiles:
+      - nginx
+    ports:
+      - 3001:3000
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx:
+    build:
+      context: ./.docker/nginx
+    restart: always
+    profiles:
+      - nginx
+    ports:
+      - 4000:80
+    develop:
+      watch:
+        - action: sync+restart
+          x-initialSync: true
+          path: ./.docker/nginx/nginx.conf
+          target: /etc/nginx/nginx.conf
+  db:
+    extends:
+      file: docker-compose.common.yaml
+      service: db
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.1-apache
+    profiles:
+      - debug
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - 8080:80
+    depends_on:
+      db:
+        condition: service_healthy

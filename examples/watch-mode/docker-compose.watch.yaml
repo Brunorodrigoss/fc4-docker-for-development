@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    command: npm run start:dev
+    restart: always
+    ports:
+      - 3000:3000
+    develop:
+      watch:
+        #sync, sync+restart, rebuild
+        - action: sync
+          path: .
+          target: /home/node/app
+          #x-initialSync: true
+
+        - action: rebuild
+          path: ./package.json

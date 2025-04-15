@@ -33,3 +33,8 @@
 | docker compose -f docker-compose.dev.yaml --profile debug up |
 | docker compose -f docker-compose.dev.yaml --profile nginx up |
 | docker compose -f docker-compose.dev.yaml --profile nginx --profile debug up |
+||
+| docker compose -f docker-compose.watch.yaml --profile nginx up --watch |
+| docker compose -f docker-compose.watch.yaml --profile nginx logs nginx |
+| docker compose -f docker-compose.watch.yaml exec nginx sh |
+| cat /etc/nginx/nginx.conf |

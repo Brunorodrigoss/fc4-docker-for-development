@@ -39,6 +39,8 @@ services:
     extends:
       file: docker-compose.common.yaml
       service: web
+    profiles:
+      - nginx
     ports:
       - 3001:3000
     depends_on:
@@ -48,6 +50,8 @@ services:
   nginx:
     image: nginx:1.19.10-alpine
     restart: always
+    profiles:
+      - nginx
     ports:
       - 4000:80
     volumes:
@@ -57,6 +61,21 @@ services:
     extends:
       file: docker-compose.common.yaml
       service: db
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.1-apache
+    profiles:
+      - debug
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - 8080:80
+    depends_on:
+      db:
+        condition: service_healthy
 
   # db:
   #   image: mysql:8.0.30-debian

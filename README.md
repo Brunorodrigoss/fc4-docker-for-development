@@ -29,3 +29,7 @@
 | docker network ls |
 ||
 | docker compose -f docker-compose.test.yaml up |
+||
+| docker compose -f docker-compose.dev.yaml --profile debug up |
+| docker compose -f docker-compose.dev.yaml --profile nginx up |
+| docker compose -f docker-compose.dev.yaml --profile nginx --profile debug up |

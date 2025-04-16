@@ -38,3 +38,7 @@
 | docker compose -f docker-compose.watch.yaml --profile nginx logs nginx |
 | docker compose -f docker-compose.watch.yaml exec nginx sh |
 | cat /etc/nginx/nginx.conf |
+||
+| export COMPOSE_FILE=docker-compose.dev.yaml:docker-compose.override.yaml |
+| docker compose config |
+| docker compose up |

@@ -1,0 +1,9 @@
+services:
+  db:
+    extends:
+      file: docker-compose.common.yaml
+      service: db
+    ports:
+      - 33060:3306
+    volumes:
+      - ./.docker/mysql/dbdata:/var/lib/mysql

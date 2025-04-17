@@ -42,3 +42,7 @@
 | export COMPOSE_FILE=docker-compose.dev.yaml:docker-compose.override.yaml |
 | docker compose config |
 | docker compose up |
+| docker compose -f docker-compose.dev.yaml -p feature-xpto up |
+| export COMPOSE_PROJECT_NAME=feature-xpto |
+| docker compose -f docker-compose.dev.yaml up |
+| docker compose -f docker-compose.dev.yaml -p feature-xpto ps |

@@ -50,3 +50,10 @@
 | docker compose -f docker-compose.dev.yaml run web1 |
 | docker compose -f docker-compose.dev.yaml run web1 node -v |
 | docker compose -f docker-compose.dev.yaml run web1 bash |
+||
+| docker compose -f docker-compose.dev.yaml build --help |
+| docker compose -f docker-compose.dev.yaml build |
+| docker compose -f docker-compose.dev.yaml build --no-cache |
+| docker compose -f docker-compose.dev.yaml build web1 |
+| docker compose -f docker-compose.dev.yaml build db web1 |
+||

@@ -58,3 +58,8 @@
 | docker compose -f docker-compose.dev.yaml build db web1 |
 ||
 | docker compose -f docker-compose.dev.yaml exec -u root web1 bash |
+||
+| docker compose -f docker-compose.dev.yaml config |
+| docker compose -f docker-compose.dev.yaml --profile nginx config |
+| docker compose -f docker-compose.dev.yaml -f docker-compose.override.yaml --profile nginx config |
+| COMPOSE_FILE=docker-compose.dev.yaml docker compose config |

@@ -57,3 +57,4 @@
 | docker compose -f docker-compose.dev.yaml build web1 |
 | docker compose -f docker-compose.dev.yaml build db web1 |
 ||
+| docker compose -f docker-compose.dev.yaml exec -u root web1 bash |

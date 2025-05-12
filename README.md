@@ -46,3 +46,7 @@
 | export COMPOSE_PROJECT_NAME=feature-xpto |
 | docker compose -f docker-compose.dev.yaml up |
 | docker compose -f docker-compose.dev.yaml -p feature-xpto ps |
+| docker compose -f docker-compose.dev.yaml up web1 |
+| docker compose -f docker-compose.dev.yaml run web1 |
+| docker compose -f docker-compose.dev.yaml run web1 node -v |
+| docker compose -f docker-compose.dev.yaml run web1 bash |

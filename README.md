@@ -63,3 +63,7 @@
 | docker compose -f docker-compose.dev.yaml --profile nginx config |
 | docker compose -f docker-compose.dev.yaml -f docker-compose.override.yaml --profile nginx config |
 | COMPOSE_FILE=docker-compose.dev.yaml docker compose config |
+| docker cp d1d38bc03b59:/etc/alpine-release . |
+| docker container cp d1d38bc03b59:/etc/alpine-release . |
+| docker compose -f docker-compose.dev.yaml cp package.json nginx:/tmp |
+||

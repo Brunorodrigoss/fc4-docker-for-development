@@ -1,0 +1,100 @@
+include:
+  - ./external-api/docker-compose.external-api.yaml
+
+services:
+  # web1:
+  #   build:
+  #     args:
+  #       - NODEMON_VERSION=${NODEMON_VERSION:-3.1.7}
+  #     context: .
+  #     dockerfile: Dockerfile.dev
+  #   command: ["./start.sh"]
+  #   volumes:
+  #     - .:/home/node/app
+  #   # ports:
+  #   #   - 3000:3000
+  #   env_file:
+  #     - .env
+  #     # - path: .env.override
+  #     #   required: false
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #       # restart: true
+  #   # networks:
+  #   #   - my-external-network
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+  web1:
+    extends:
+      file: docker-compose.common.yaml
+      service: web
+    ports:
+      - 3000:3000
+    depends_on:
+      db:
+        condition: service_healthy
+  
+  web2:
+    extends:
+      file: docker-compose.common.yaml
+      service: web
+    profiles:
+      - nginx
+    ports:
+      - 3001:3000
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:1.19.10-alpine
+    restart: always
+    profiles:
+      - nginx
+    ports:
+      - 4000:80
+    volumes:
+      - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+
+  db:
+    extends:
+      file: docker-compose.common.yaml
+      service: db
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.1-apache
+    profiles:
+      - debug
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - 8080:80
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # db:
+  #   image: mysql:8.0.30-debian
+  #   # restart: on-failure:5
+  #   restart: always
+  #   env_file:
+  #     - .env
+  #   # environment:
+  #   #   MYSQL_ROOT_PASSWORD: root
+  #   #   MYSQL_DATABASE: mysqldatabase
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+  #     interval: 30s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 10s
+  #   # networks:
+  #   #   - my-external-network
+
+# networks:
+#   my-external-network:
+#     external: true

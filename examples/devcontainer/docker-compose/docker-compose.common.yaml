@@ -10,8 +10,8 @@ services:
       - .:/home/node/app
     # ports:
     #   - 3000:3000
-    env_file:
-      - .env
+    # env_file:
+    #   - .env.example
       # - path: .env.override
       #   required: false
     # depends_on:
@@ -27,11 +27,11 @@ services:
     image: mysql:8.0.30-debian
     # restart: on-failure:5
     restart: always
-    env_file:
-      - .env
-    # environment:
-    #   MYSQL_ROOT_PASSWORD: root
-    #   MYSQL_DATABASE: mysqldatabase
+    # env_file:
+    #   - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mysqldatabase
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 30s
